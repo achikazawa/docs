@@ -9,43 +9,26 @@ authors:
 
 ## Introduction
 
-This tutorial introduces students on how to use ultrasonic distance sensors with an ESP32 and using those readings to generate a PWM signal to then control the output of an ESP32. From this tutorial students will learn to calibrate sensors and get accurate real-world measurements to drive an output device.
+This tutorial introduces students on how to use ultrasonic distance sensors with an ESP32 and using those readings to light an LED to signify when an object is out of reach. From this tutorial students will learn to calibrate sensors and get accurate real-world measurements to drive an output device. 
 
 The motivation behind this tutorial is to introduce students to various different input and output sustems that can be applied to other real world applications. 
 
 ### Learning Objectives
 
 + Bread boarding
-+ PWM control
 + Using an ultrasonic sensor
 + Sensor input calibration
++ Live output reading
 
 ### Background Information
 
 A proximity sensor is used to measure the distance between the sensor and an obstacle by sending pulsing high frequency noises and calculating the time between the pulse and the echo. We are using an HC-SR04 due to its afforable and ease of set up. Other distance sensors exist but they are much more expensive or are much harder to setup. The drawback of these ultra sonic sensors are their difficulty gathering accurate data when used against sound absorbing material. 
 
-PWM signals are high frequency pulses as well that determine the voltage output to a device. A PWM signal is a digital signal that uses the duty cycle of high and low signals to essentially create an analog signal from digital high and low signals. 
-
-
 ## Getting Started
-
-For any software prerequisites, write a simple excerpt on each
-technology the participant will be expecting to download and install.
-Aim to demystify the technologies being used and explain any design
-decisions that were taken. Walk through the installation processes
-in detail. Be aware of any operating system differences.
-For hardware prerequisites, list all the necessary components that
-the participant will receive. A table showing component names and
-quantities should suffice. Link any reference sheets or guides that
-the participant may need.
-The following are stylistic examples of possible prerequisites,
-customize these for each workshop.
 
 ### Required Downloads and Installations
 
-List any required downloads and installations here.
-Make sure to include tutorials on how to install them.
-You can either make your own tutorials or include a link to them.
+The student is expected to install the Arduino IDE software along with the board drivers for the ESP32 family boards. The Arduino IDE software can be installed by looking up Arduino IDE and going to the first link on Google. From there, students should choose which version that would work with their computer.
 
 ### Required Components
 
@@ -54,7 +37,7 @@ List your required hardware components and the quantities here.
 | Component Name  | Quanitity |
 | ESP32 dev board |     1     |
 | HC-SR04 Sensor  |     1     |
-| Piezzo Buzzer   |     1     |
+| LED             |     1     |
 | Bread Board     |     1     |
 | Jumper Cables   |     1     |
 | USB typeC cable |     1     |
@@ -70,18 +53,17 @@ List your required hardware components and the quantities here.
 
 ### Introduction
 
-Briefly introduce what  you are teaching in this section.
+We are learning how to use an ESP32 to get a distance reading and using that reading to display some sort of output. 
 
 ### Objective
 
-- List the learning objectives of this section
+- How to use Arduino IDE with ESP32
+- How to use an Ultrasonic sensor and how they work
+- 
 
 ### Background Information
 
-Give a brief explanation of the technical skills learned/needed
-in this challenge. There is no need to go into detail as a
-separation document should be prepared to explain more in depth
-about the technical skills
+Students must be somewhat familiar with Arduino coding syntax and breadboarding. 
 
 ### Components
 
@@ -94,7 +76,6 @@ Step 1: Setting up project space
   - Assemble ESP32 board if not already assembled
   - Download Arduino IDE through this link (insert link later)
   - Collect all needed materials (listed in required components section above)
-  - 
 
 Step 2: Connect HC-SR04 to ESP32
   Connect the following pins on the ultrasonic sensor to the pins on the ESP32
@@ -105,34 +86,25 @@ Step 2: Connect HC-SR04 to ESP32
 
 Step 3: Setting up in Arduino IDE
   Input code to have initial setup of ultrasonic sensors
-  #define TRIG_PIN (previously chosen value)
-  #define ECHO_PIN (previously chosen value)
-
-  void_setup() {
-    Serial.begin(115200);
-    pinMode(TRIG_PIN, OUTPUT);
-    pinMode(ECHO_PIN, INPUT);
-  }
-
-  
- 
+    ![image](https://github.com/user-attachments/assets/e9500f06-13d4-4f1b-ac1c-65032ee5767c) 
 
 ## Example
 
 ### Introduction
 
-Introduce the example that you are showing here.
+The board should react to different readings from the ultrasonic sensor. In our code we have it set up so that the readings are in centimeters and it will light the LED once the reading is over 200cm. The distance is also shown in the serial monitor so that the use can get an understanding of what the sensor is reading. 
 
 ### Example
 
-Present the example here. Include visuals to help better understanding
+![image](https://github.com/user-attachments/assets/9729fde8-220b-476a-84e8-f6fae3e7e3f3)
+
 
 ### Analysis
 
-Explain how the example used your tutorial topic. Give in-depth analysis of each part and show your understanding of the tutorial topic
+The bread boarding is very simple. In the code we can see the set up of each each pin. When finding the distance we first define duration as the time it takes for the echo pin to receive the intial sound back from the ultrasonic sensor. Distance is calculated using the time it takes to receive the readings multiplied by the speed of sound in cm/s. Then it is divided by two as it is the two way distance when reading the time. 
 
 ## Additional Resources
 
 ### Useful links
 
-List any sources you used, documentation, helpful examples, similar projects etc.
+https://randomnerdtutorials.com/esp32-hc-sr04-ultrasonic-arduino/ 
